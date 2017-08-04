@@ -44,3 +44,5 @@ class Poll extends React.Component {
         );
     }
 }
+
+ReactDOM.render(<Header />, document.getElementById("app"));
