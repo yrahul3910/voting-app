@@ -39,8 +39,8 @@ class Main extends React.Component {
                 <Route exact path="/" render={ () =>
                     <Home polls={p} />
                 } />
-                <Route path="/poll/:id" render={ () =>
-                    <Poll polls={p} />
+                <Route path="/poll/:id" render={(props) =>
+                    <Poll polls={p} {...props} />
                 } />
             </Switch>
         );

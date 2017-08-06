@@ -7,10 +7,7 @@ class Poll extends React.Component {
     }
 
     render() {
-        // this.props.match is undefined for some reason, so work around it.
-        console.log(this.props);
-        const path = window.location.pathname;
-        const id = path.charAt(path.length-1);
+        let id = Number.parseInt(this.props.match.params.id);
 
         let current = this.props.polls[id];
 
@@ -31,7 +28,7 @@ class Poll extends React.Component {
 }
 
 Poll.propTypes = {
-    match: PropTypes.object, // always undefined!?
+    match: PropTypes.object.isRequired,
     polls: PropTypes.array.isRequired
 };
 
