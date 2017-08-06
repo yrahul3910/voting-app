@@ -5,10 +5,10 @@ This is the code for the FreeCodeCamp Voting App project.
 The code in this project is structured in the following way.  
 
 ## Routing
-React Router (`react-router-dom`) is used for routing, which is done in the client side. The `<Main>` components is an abstraction that contains the routes to all the major paths. Individual components are then responsible for nested routes.
+React Router (`react-router-dom`) is used for routing, which is done in the client side. The `<Main>` component is an abstraction that contains the routes to all the major paths. Individual components are then responsible for nested routes.
 
 ## React Components
-All React components are in the `components` folder. The `index.js` file renders the `<App />` component under a `<BrowserRouter>`, which holds the skeletal structure for each page. Each page in the voting app has a header (a footer to be added later), and the actual content of each page is abstracted in the `<Main>` component.  
+All React components are in the `components` folder. The `index.js` file renders the `<App />` component (which holds the skeletal structure for each page) under a `<BrowserRouter>`. Each page in the voting app has a header (a footer to be added later), and the actual content of each page is abstracted in the `<Main>` component.  
 
 An overview of each component is below:
 * `<App>`: Top level component, spanning the whole page.

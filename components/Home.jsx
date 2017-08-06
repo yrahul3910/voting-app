@@ -1,4 +1,5 @@
 import React from "react";
+import {Link} from "react-router-dom";
 import PropTypes from "prop-types";
 
 import PollButton from "./PollButton.jsx";
@@ -15,7 +16,9 @@ class Home extends React.Component {
 
     render() {
         let p = this.props.polls.map((p, i) =>
-            <PollButton key={i} name={p.name} url={p.url} />
+            <Link key={i} to={"/poll/" + i}>
+                <PollButton name={p.name} />
+            </Link>
         );
         return (
             <div className="col-md-4 col-md-offset-4">
