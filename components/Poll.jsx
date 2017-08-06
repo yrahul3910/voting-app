@@ -13,8 +13,8 @@ class Poll extends React.Component {
 
     render() {
         return (
-            <a href={this.props.url}>
-                <button className="btn">{this.props.name}</button>
+            <a href={"/polls/" + this.props.url}>
+                <button className="btn btn-default">{this.props.name}</button>
             </a>
         );
     }
@@ -25,4 +25,4 @@ Poll.propTypes = {
     name: PropTypes.string.isRequired
 };
 
-module.exports = {Poll};
+export default Poll;

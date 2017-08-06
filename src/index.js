@@ -1,12 +1,13 @@
 // App entry point
-import "./index.css";
+import "./index.sass";
 import React from "react";
 import ReactDOM from "react-dom";
+import {BrowserRouter as Router} from "react-router-dom";
 
-import {App} from "../components/App.jsx";
+import App from "../components/App.jsx";
 
-let p = [{
-    url: "foo",
-    name: "Test"
-}];
-ReactDOM.render(<App polls={p} />, document.getElementById("app"));
+ReactDOM.render(
+    <Router>
+        <App />
+    </Router>, document.getElementById("app")
+);

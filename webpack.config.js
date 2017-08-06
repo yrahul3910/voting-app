@@ -21,7 +21,7 @@ export default {
             {test: /\.jsx$/, exclude: /node_modules/, loaders: ["babel-loader"]},
             {test: /\.js$/, exclude: /node_modules/, loaders: ["babel-loader"]},
             {test: /\.css$/, loaders: ["style-loader","css-loader"]},
-            {test: /\.sass$/, loaders: ["sass-loader"]}
+            {test: /\.sass$/, loaders: ["style-loader", "css-loader", "sass-loader"]}
         ]
     }
 };
