@@ -16,6 +16,7 @@ An overview of each component is below:
 * `<Home>`: The content (body) of the home page, containing a list of all the polls, at route `/`.
 * `<Main>`: The component that abstracts all the routes for each path.
 * `<PollButton>`: Each poll displayed in the home page is a `<PollButton>` component.
+* `<Poll>`: The content of the page that contains a poll. This is rendered on every call to `/poll/:id`, where `id` is the index of the poll in the database.
 
 ## NPM Scripts
 The scripts are used as below:

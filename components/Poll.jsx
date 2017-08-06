@@ -8,6 +8,7 @@ class Poll extends React.Component {
 
     render() {
         // this.props.match is undefined for some reason, so work around it.
+        console.log(this.props);
         const path = window.location.pathname;
         const id = path.charAt(path.length-1);
 
