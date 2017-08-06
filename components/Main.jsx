@@ -9,6 +9,7 @@ class Main extends React.Component {
                 <Route exact path="/" render={ () =>
                     <Home polls={[{name: "Test poll", url: "test"}]} />
                 } />
+
             </Switch>
         );
     }

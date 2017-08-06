@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-class Poll extends React.Component {
+class PollButton extends React.Component {
     /*
     props:
         name (String): The name of the poll
@@ -14,15 +14,15 @@ class Poll extends React.Component {
     render() {
         return (
             <a href={"/polls/" + this.props.url}>
-                <button className="btn btn-default">{this.props.name}</button>
+                <button className="btn btn-default poll">{this.props.name}</button>
             </a>
         );
     }
 }
 
-Poll.propTypes = {
+PollButton.propTypes = {
     url: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired
 };
 
-export default Poll;
+export default PollButton;

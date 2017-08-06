@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import Poll from "./Poll.jsx";
+import PollButton from "./PollButton.jsx";
 
 class Home extends React.Component {
     /*
@@ -15,10 +15,10 @@ class Home extends React.Component {
 
     render() {
         let p = this.props.polls.map((p, i) =>
-            <Poll key={i} name={p.name} url={p.url} />
+            <PollButton key={i} name={p.name} url={p.url} />
         );
         return (
-            <div>
+            <div className="col-md-4 col-md-offset-4">
                 {p}
             </div>
         );

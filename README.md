@@ -15,7 +15,7 @@ An overview of each component is below:
 * `<Header>`: The header with the navigation.
 * `<Home>`: The content (body) of the home page, containing a list of all the polls, at route `/`.
 * `<Main>`: The component that abstracts all the routes for each path.
-* `<Poll>`: Each poll displayed in the home page is a `<Poll>` component.
+* `<PollButton>`: Each poll displayed in the home page is a `<PollButton>` component.
 
 ## NPM Scripts
 The scripts are used as below:
