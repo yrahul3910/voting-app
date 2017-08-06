@@ -30,5 +30,5 @@ The scripts are used as below:
 * `.editorconfig` enforces indenting and other configurations for editors and IDEs.
 * `.eslintrc.json` is the ESLint config file.
 
-# Page Source Code
+## Page Source Code
 The main source code is in the `src` directory. Sass is used for styling.
