@@ -33,3 +33,26 @@ The scripts are used as below:
 
 ## Page Source Code
 The main source code is in the `src` directory. Sass is used for styling.
+
+## Authentication
+Passport.js is used to authenticate users. The site uses Google OAuth2 for signing up and logging in, so the `passport-google-oauth` package is used. The file `passport.js` is the configuration file for Passport.
+
+# Database
+MongoDB is used for the database, and the MongoDB driver for Node is used to modify the database, which is hosted on mLab. The database will have two collections:
+* `polls` (not yet added). Each document has the structure:
+```
+{
+    name: "The title of the poll",
+    q   : "The question",
+    ops : [ "Array", "of", "string", "options" ],
+    uid : "This will be the same as google_id of users collection"
+}
+```
+* `users`. Each document has the structure:
+```
+{
+    google_id: "ID given by Google OAuth2 API",
+    polls    : [ "Array", "of", "links", "to", "polls" ],
+    name     : "User's name, taken from Google OAuth2"
+}
+```
