@@ -35,7 +35,7 @@ The scripts are used as below:
 The main source code is in the `src` directory. Sass is used for styling.
 
 ## Authentication
-Passport.js is used to authenticate users. The site uses Google OAuth2 for signing up and logging in, so the `passport-google-oauth` package is used. The file `passport.js` is the configuration file for Passport.
+Passport.js is used to authenticate users. The site uses Google OAuth2 for signing up and logging in, so the `passport-google-oauth` package is used. The file `passport.js` is the configuration file for Passport. Some code for this part is taken from [Scotch.io](https://scotch.io/tutorials/easy-node-authentication-google).
 
 # Database
 MongoDB is used for the database, and the MongoDB driver for Node is used to modify the database, which is hosted on mLab. The database will have two collections:
