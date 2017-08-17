@@ -48,14 +48,15 @@ MongoDB is used for the database, and the MongoDB driver for Node is used to mod
     name: "The title of the poll",
     q   : "The question",
     ops : [ "Array", "of", "string", "options" ],
-    uid : "This will be the same as google_id of users collection"
+    uid : "This will be the same as username of users collection"
 }
 ```
 * `users`. Each document has the structure:
 ```
 {
-    google_id: "ID given by Google OAuth2 API",
+    username : "Username chosen by the user",
     polls    : [ "Array", "of", "links", "to", "polls" ],
-    name     : "User's name, taken from Google OAuth2"
+    name     : "User's name, taken from Google OAuth2",
+    pwd      : "bcrypt hashed password"
 }
 ```
