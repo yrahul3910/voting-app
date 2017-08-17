@@ -3,6 +3,9 @@ import {Switch, Route} from "react-router-dom";
 
 import Home from "./Home.jsx";
 import Poll from "./Poll.jsx";
+import Login from "./Login.jsx";
+import Register from "./Register.jsx";
+
 class Main extends React.Component {
     render() {
         const p = [
@@ -41,6 +44,12 @@ class Main extends React.Component {
                 } />
                 <Route path="/poll/:id" render={(props) =>
                     <Poll polls={p} {...props} />
+                } />
+                <Route path="/login" render={() =>
+                    <Login />
+                } />
+                <Route path="/register" render={() =>
+                    <Register />
                 } />
             </Switch>
         );

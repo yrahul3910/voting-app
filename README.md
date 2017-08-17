@@ -17,10 +17,13 @@ An overview of each component is below:
 * `<Main>`: The component that abstracts all the routes for each path.
 * `<PollButton>`: Each poll displayed in the home page is a `<PollButton>` component.
 * `<Poll>`: The content of the page that contains a poll. This is rendered on every call to `/poll/:id`, where `id` is the index of the poll in the database.
+* `<Login>`: The content of the login page, which includes a link to the register page.
+* `<Register>`: The content of the registration page. Like `<Login>`, this just contains a form.
+* `<Profile>`: The content of the user's profile page. This isn't used as of now.
 
 ## NPM Scripts
 The scripts are used as below:
-* `server`: Starts the dev server. This runs `server.js`, which uses `webpack-dev-middleware` to transpile code and `Express` for the server. This also uses the `compression` package to gzip files before sending to the client.
+* `server`: Starts the dev server. This runs `server.js`, which uses `webpack-dev-middleware` to transpile code and `Express` for the server. This also uses the `compression` package to gzip files before sending to the client. `nodemon` is used to restart the server when the file is changed, and `babel-node` transpiles the code before the server is started.
 * `lint:watch`: Runs `lint`, which lints the code, and watches for changes in code and re-runs `lint` each time.
 * `start`: Uses `npm-run-all` to parallely run the above two scripts.
 * `localtunnel`: Uses the `localtunnel` package to share work-in-progress.
@@ -35,7 +38,7 @@ The scripts are used as below:
 The main source code is in the `src` directory. Sass is used for styling.
 
 ## Authentication
-Passport.js is used to authenticate users. The site uses Google OAuth2 for signing up and logging in, so the `passport-google-oauth` package is used. The file `passport.js` is the configuration file for Passport. Some code for this part is taken from [Scotch.io](https://scotch.io/tutorials/easy-node-authentication-google).
+Custom authentication is implemented. JWT is used to send encoded data from the server, though the use of JWTs is not fully implemented as of this commit. The `bcrypt` module provides a secure one-way hash to store passwords in the database. During login, the user entered password is compared with the hashed password from the database.
 
 # Database
 MongoDB is used for the database, and the MongoDB driver for Node is used to modify the database, which is hosted on mLab. The database will have two collections:

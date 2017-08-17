@@ -1,4 +1,5 @@
 import React from "react";
+import {Link} from "react-router-dom";
 
 class Header extends React.Component {
     constructor(props) {
@@ -15,6 +16,13 @@ class Header extends React.Component {
                     <ul className="nav navbar-nav">
                         <li>
                             <a href="/">Home</a>
+                        </li>
+                    </ul>
+                    <ul className="nav navbar-nav navbar-right">
+                        <li>
+                            <Link to="/login">
+                                Login
+                            </Link>
                         </li>
                     </ul>
                 </div>
