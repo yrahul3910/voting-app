@@ -1,12 +1,30 @@
 import React from "react";
 import {Link} from "react-router-dom";
+import PropTypes from "prop-types";
 
 class Header extends React.Component {
+    /*
+        props:
+            loggedIn: Boolean representing whether user is logged in
+    */
     constructor(props) {
         super(props);
     }
 
     render() {
+        let loginElement;
+        if (this.props.loggedIn) {
+            loginElement =
+                <Link to="/profile">
+                    My Profile
+                </Link>;
+        } else {
+            loginElement =
+                <Link to="/login">
+                    Login
+                </Link>;
+        }
+
         return (
             <nav className="navbar navbar-default">
                 <div className="navbar-header">
@@ -20,9 +38,7 @@ class Header extends React.Component {
                     </ul>
                     <ul className="nav navbar-nav navbar-right">
                         <li>
-                            <Link to="/login">
-                                Login
-                            </Link>
+                            {loginElement}
                         </li>
                     </ul>
                 </div>
@@ -30,5 +46,9 @@ class Header extends React.Component {
         );
     }
 }
+
+Header.propTypes = {
+    loggedIn: PropTypes.bool.isRequired
+};
 
 export default Header;

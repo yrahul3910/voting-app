@@ -1,5 +1,6 @@
 import React from "react";
 import {Switch, Route} from "react-router-dom";
+import PropTypes from "prop-types";
 
 import Home from "./Home.jsx";
 import Poll from "./Poll.jsx";
@@ -7,6 +8,14 @@ import Login from "./Login.jsx";
 import Register from "./Register.jsx";
 
 class Main extends React.Component {
+    /*
+    props:
+        toggleLogin: function that should be called when user logs in/out
+    */
+    toggleLogin() {
+        this.props.toggleLogin();
+    }
+
     render() {
         const p = [
             {
@@ -46,14 +55,18 @@ class Main extends React.Component {
                     <Poll polls={p} {...props} />
                 } />
                 <Route path="/login" render={() =>
-                    <Login />
+                    <Login toggleLogin={this.props.toggleLogin} />
                 } />
                 <Route path="/register" render={() =>
-                    <Register />
+                    <Register toggleLogin={this.props.toggleLogin} />
                 } />
             </Switch>
         );
     }
 }
+
+Main.propTypes = {
+    toggleLogin: PropTypes.func.isRequired
+};
 
 export default Main;

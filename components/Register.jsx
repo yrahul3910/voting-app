@@ -1,5 +1,6 @@
 /* eslint no-undef:0 */
 import React from "react";
+import PropTypes from "prop-types";
 
 class Register extends React.Component {
     constructor(props) {
@@ -15,8 +16,10 @@ class Register extends React.Component {
         }, (data) => {
             if (!data.success)
                 $("#message").html("<span style='color: red'>Username already exists!</span>");
-            else
+            else {
                 $("#message").html("<span style='color: green'>Success!</span>");
+                this.props.toggleLogin();
+            }
         });
     }
 
@@ -40,5 +43,9 @@ class Register extends React.Component {
         );
     }
 }
+
+Register.propTypes = {
+    toggleLogin: PropTypes.func.isRequired
+};
 
 export default Register;

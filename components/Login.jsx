@@ -2,8 +2,13 @@
 
 import React from "react";
 import {Link} from "react-router-dom";
+import PropTypes from "prop-types";
 
 class Login extends React.Component {
+    /*
+        props:
+            toggleLogin: function to call when login status changes
+    */
     constructor(props) {
         super(props);
         this.click = this.click.bind(this);
@@ -18,6 +23,7 @@ class Login extends React.Component {
                 $("#message").html("<span style='color: red'>Authentication failed</span>");
             else {
                 $("#message").html("<span style='color: green'>Success</span>");
+                this.props.toggleLogin();
             }
         });
     }
@@ -43,5 +49,9 @@ class Login extends React.Component {
         );
     }
 }
+
+Login.propTypes = {
+    toggleLogin: PropTypes.func.isRequired
+};
 
 export default Login;
