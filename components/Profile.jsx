@@ -27,6 +27,9 @@ class Profile extends React.Component {
                     <h3>Your Polls</h3>
                     {p}
                 </div>
+                <div className="col-md-4 col-md-offset-4">
+                    <button className="btn btn-primary">New Poll</button>
+                </div>
             </div>
         );
     }

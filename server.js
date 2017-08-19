@@ -61,6 +61,11 @@ apiRoutes.post("/authenticate", (req, res) => {
                         res.json({
                             success: true,
                             message: "Authenticated successfully.",
+                            user: {
+                                name: user.name,
+                                username: user.username,
+                                polls: user.polls
+                            },
                             token
                         });
                     }

@@ -5,7 +5,8 @@ import PropTypes from "prop-types";
 class Header extends React.Component {
     /*
         props:
-            loggedIn: Boolean representing whether user is logged in
+            loggedIn: Boolean representing whether user is logged in,
+            user: User object containing name and polls
     */
     constructor(props) {
         super(props);
@@ -16,7 +17,7 @@ class Header extends React.Component {
         if (this.props.loggedIn) {
             loginElement =
                 <Link to="/profile">
-                    My Profile
+                    {this.props.user.name}
                 </Link>;
         } else {
             loginElement =
@@ -48,7 +49,8 @@ class Header extends React.Component {
 }
 
 Header.propTypes = {
-    loggedIn: PropTypes.bool.isRequired
+    loggedIn: PropTypes.bool.isRequired,
+    user: PropTypes.object.isRequired
 };
 
 export default Header;

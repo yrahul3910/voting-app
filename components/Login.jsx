@@ -23,7 +23,7 @@ class Login extends React.Component {
                 $("#message").html("<span style='color: red'>Authentication failed</span>");
             else {
                 $("#message").html("<span style='color: green'>Success</span>");
-                this.props.toggleLogin();
+                this.props.toggleLogin(data.user);
             }
         });
     }

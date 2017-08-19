@@ -6,21 +6,22 @@ import Main from "./Main.jsx";
 class App extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {loggedIn: false};
+        this.state = {loggedIn: false, user: null };
         this.toggleLoggedIn = this.toggleLoggedIn.bind(this);
     }
 
-    toggleLoggedIn() {
+    toggleLoggedIn(user) {
         this.setState({
-            loggedIn: !this.state.loggedIn
+            loggedIn: !this.state.loggedIn,
+            user
         });
     }
 
     render() {
         return (
             <div>
-                <Header loggedIn={this.state.loggedIn} />
-                <Main toggleLogin={this.toggleLoggedIn} />
+                <Header loggedIn={this.state.loggedIn} user={this.state.user} />
+                <Main toggleLogin={this.toggleLoggedIn} user={this.state.user} />
             </div>
         );
     }
