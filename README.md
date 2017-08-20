@@ -43,13 +43,13 @@ Custom authentication is implemented. JWT is used to send encoded data from the 
 
 # Database
 MongoDB is used for the database, and the MongoDB driver for Node is used to modify the database, which is hosted on mLab. The database will have two collections:
-* `polls` (not yet added). Each document has the structure:
+* `polls`. Each document has the structure:
 ```
 {
-    name: "The title of the poll",
-    q   : "The question",
-    ops : [ "Array", "of", "string", "options" ],
-    uid : "This will be the same as username of users collection"
+    title   : "The title of the poll",
+    url     : "URL of the poll",
+    ops     : [ "Array", "of", "string", "options" ],
+    username: "This will be the same as username of users collection"
 }
 ```
 * `users`. Each document has the structure:
