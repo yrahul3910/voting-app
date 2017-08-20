@@ -71,6 +71,7 @@ apiRoutes.post("/authenticate", (req, res) => {
                     }
                 });
             }
+            db.close();
         });
     });
 });
@@ -100,6 +101,62 @@ apiRoutes.post("/register", (req, res) => {
                 });
                 res.json({ success: true, message: "Success!" });
             }
+            db.close();
+        });
+    });
+});
+
+apiRoutes.post("/polls/new", (req, res) => {
+    mongo.connect(process.env.MONGO_URL, (err, db) => {
+        if (err) {
+            res.json({
+                success: false,
+                message: "Failed to insert into database."
+            });
+            db.close();
+            return;
+        }
+
+        // First add poll to the polls collection
+        let coll = db.collection("polls");
+        let id;
+
+        // Make sure the URL doesn't already exist
+        coll.findOne({
+            url: req.body.url
+        }, (e, results) => {
+            if (results) {
+                res.json({
+                    success: false,
+                    message: "URL cannot be duplicate."
+                });
+                return;
+            }
+
+            coll.insertOne({
+                title: req.body.title,
+                ops: req.body.options,
+                username: req.body.username,
+                url: req.body.url
+            }, (e, result) => {
+                id = result.insertedId;
+            });
+
+            // Now update the user's record
+            coll = db.collection("users");
+            coll.findOneAndUpdate({
+                username: req.body.username
+            }, {
+                $push: {
+                    polls: id
+                }
+            });
+            db.close();
+
+            res.json({
+                success: true,
+                message: "Successfully inserted."
+            });
         });
     });
 });
@@ -129,6 +186,7 @@ apiRoutes.get("/users", (req, res) => {
         users.find({}).toArray((e, users) => {
             res.json(users);
         });
+        db.close();
     });
 });
 

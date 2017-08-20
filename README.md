@@ -19,7 +19,8 @@ An overview of each component is below:
 * `<Poll>`: The content of the page that contains a poll. This is rendered on every call to `/poll/:id`, where `id` is the index of the poll in the database.
 * `<Login>`: The content of the login page, which includes a link to the register page.
 * `<Register>`: The content of the registration page. Like `<Login>`, this just contains a form.
-* `<Profile>`: The content of the user's profile page. This isn't used as of now.
+* `<Profile>`: The content of the user's profile page.
+* `<NewPoll>`: The page where the user can create a new poll.
 
 ## NPM Scripts
 The scripts are used as below:
@@ -60,3 +61,6 @@ MongoDB is used for the database, and the MongoDB driver for Node is used to mod
     pwd      : "bcrypt hashed password"
 }
 ```
+
+# TODOs
+* The `/poll/:id` path should be handled by the server, not React-Router.

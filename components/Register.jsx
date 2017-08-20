@@ -11,7 +11,7 @@ class Register extends React.Component {
     click() {
         let name = $("#name").val();
         let username = $("#username").val();
-        $.post("/api/register", {
+        $.post("http://localhost:8000/api/register", {
             username,
             password: $("#password").val(),
             name

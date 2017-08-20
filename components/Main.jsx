@@ -7,6 +7,7 @@ import Poll from "./Poll.jsx";
 import Login from "./Login.jsx";
 import Register from "./Register.jsx";
 import Profile from "./Profile.jsx";
+import NewPoll from "./NewPoll.jsx";
 
 class Main extends React.Component {
     /*
@@ -66,6 +67,9 @@ class Main extends React.Component {
                     <Profile name={this.props.user.name}
                         username={this.props.user.username}
                         polls={this.props.user.polls} />
+                } />
+                <Route exact path="/polls/new" render={() =>
+                    <NewPoll username={this.props.user.username} />
                 } />
             </Switch>
         );

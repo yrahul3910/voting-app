@@ -15,7 +15,7 @@ class Login extends React.Component {
     }
 
     click() {
-        $.post("/api/authenticate", {
+        $.post("http://localhost:8000/api/authenticate", {
             username: $("#username").val(),
             password: $("#password").val()
         }, (data) => {

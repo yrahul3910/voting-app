@@ -18,6 +18,7 @@
     "dotenv": "^4.0.0",
     "jquery": "^3.2.1",
     "jsonwebtoken": "^7.4.2",
+    "lodash": "^4.17.4",
     "mongodb": "^2.2.31",
     "react-router-dom": "^4.1.2"
   },
