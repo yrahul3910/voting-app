@@ -39,7 +39,7 @@ The scripts are used as below:
 The main source code is in the `src` directory. Sass is used for styling.
 
 ## Authentication
-Custom authentication is implemented. JWT is used to send encoded data from the server, though the use of JWTs is not fully implemented as of this commit. The `bcrypt` module provides a secure one-way hash to store passwords in the database. During login, the user entered password is compared with the hashed password from the database.
+Custom authentication is implemented. JWT is used to send encoded data from the server, and is used along with `express-session` for session management. The JWT tokens are stored in the browser's session storage. The `bcrypt` module provides a secure one-way hash to store passwords in the database. During login, the user entered password is compared with the hashed password from the database.
 
 # Database
 MongoDB is used for the database, and the MongoDB driver for Node is used to modify the database, which is hosted on mLab. The database will have two collections:
@@ -57,7 +57,7 @@ MongoDB is used for the database, and the MongoDB driver for Node is used to mod
 {
     username : "Username chosen by the user",
     polls    : [ "Array", "of", "links", "to", "polls" ],
-    name     : "User's name, taken from Google OAuth2",
+    name     : "User's name",
     pwd      : "bcrypt hashed password"
 }
 ```

@@ -1,5 +1,4 @@
 import express from "express";
-import path from "path";
 import open from "open";
 import cors from "cors";
 import bodyParser from "body-parser";
@@ -7,6 +6,7 @@ import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
 import {MongoClient as mongo} from "mongodb";
 import bcrypt from "bcrypt";
+import session from "express-session";
 
 // Used for transpiling
 import webpack from "webpack";
@@ -27,6 +27,7 @@ app.use(require("webpack-dev-middleware")(compiler, {
 app.use(cors());
 app.use(compression()); // gzip files before sending
 
+app.use(session({secret: process.env.SECRET, resave: true, saveUninitialized: true}));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
@@ -36,6 +37,7 @@ app.use("/api", apiRoutes);
 
 /* Order of these API routes matters, we don't want to protect
  /api/authenticate */
+// This is for login.
 apiRoutes.post("/authenticate", (req, res) => {
     mongo.connect(process.env.MONGO_URL, (err, db) => {
         let users = db.collection("users");
@@ -92,7 +94,7 @@ apiRoutes.post("/register", (req, res) => {
                 bcrypt.hash(req.body.password, 10, (e_, hash) => {
                     if (e_) throw e_;
 
-                    users.insertOne({
+                    users.insert({
                         username: req.body.username,
                         name: req.body.name,
                         pwd: hash,
@@ -101,7 +103,6 @@ apiRoutes.post("/register", (req, res) => {
                 });
                 res.json({ success: true, message: "Success!" });
             }
-            db.close();
         });
     });
 });
@@ -119,7 +120,6 @@ apiRoutes.post("/polls/new", (req, res) => {
 
         // First add poll to the polls collection
         let coll = db.collection("polls");
-        let id;
 
         // Make sure the URL doesn't already exist
         coll.findOne({
@@ -138,8 +138,6 @@ apiRoutes.post("/polls/new", (req, res) => {
                 ops: req.body.options,
                 username: req.body.username,
                 url: req.body.url
-            }, (e, result) => {
-                id = result.insertedId;
             });
 
             // Now update the user's record
@@ -148,7 +146,7 @@ apiRoutes.post("/polls/new", (req, res) => {
                 username: req.body.username
             }, {
                 $push: {
-                    polls: id
+                    polls: req.body.url
                 }
             });
             db.close();
@@ -180,6 +178,11 @@ apiRoutes.use((req, res, next) => {
     }
 });
 
+apiRoutes.get("/whoami", (req, res) => {
+    let user = req.decoded;
+    res.send(user);
+});
+
 apiRoutes.get("/users", (req, res) => {
     mongo.connect(process.env.MONGO_URL, (err, db) => {
         let users = db.collection("users");
@@ -191,7 +194,7 @@ apiRoutes.get("/users", (req, res) => {
 });
 
 app.get("/", (req, res) => {
-    res.sendFile(path.join(__dirname, "src/index.html"));
+    res.sendFile("./src/index.html");
 });
 
 app.listen(port, (err) => {

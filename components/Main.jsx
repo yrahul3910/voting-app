@@ -15,6 +15,11 @@ class Main extends React.Component {
         toggleLogin: function that should be called when user logs in/out,
         user: Object containing user name and polls
     */
+    constructor(props) {
+        super(props);
+        this.toggleLogin = this.toggleLogin.bind(this);
+    }
+
     toggleLogin(user) {
         this.props.toggleLogin(user);
     }
@@ -52,16 +57,16 @@ class Main extends React.Component {
         return (
             <Switch>
                 <Route exact path="/" render={ () =>
-                    <Home polls={p} />
+                    <Home polls={p} toggleLogin={this.toggleLogin} />
                 } />
                 <Route path="/poll/:id" render={(props) =>
                     <Poll polls={p} {...props} />
                 } />
                 <Route exact path="/login" render={() =>
-                    <Login toggleLogin={this.props.toggleLogin} />
+                    <Login toggleLogin={this.toggleLogin} />
                 } />
                 <Route exact path="/register" render={() =>
-                    <Register toggleLogin={this.props.toggleLogin} />
+                    <Register toggleLogin={this.toggleLogin} />
                 } />
                 <Route exact path="/profile" render={() =>
                     <Profile name={this.props.user.name}
@@ -78,7 +83,7 @@ class Main extends React.Component {
 
 Main.propTypes = {
     toggleLogin: PropTypes.func.isRequired,
-    user: PropTypes.object.isRequired
+    user: PropTypes.object
 };
 
 export default Main;

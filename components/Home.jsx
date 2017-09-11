@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import React from "react";
 import {Link} from "react-router-dom";
 import PropTypes from "prop-types";
@@ -8,10 +9,21 @@ class Home extends React.Component {
     /*
     props:
         polls: An array of poll objects
+        toggleLogin: A function to toggle login status
     */
 
     constructor(props) {
         super(props);
+    }
+
+    componentDidMount() {
+        if (sessionStorage.getItem("token")) {
+            $.getJSON("http://localhost:8000/api/whoami", {
+                "token": sessionStorage.getItem("token")
+            }, (user) => {
+                this.props.toggleLogin(user);
+            });
+        }
     }
 
     render() {
@@ -29,7 +41,8 @@ class Home extends React.Component {
 }
 
 Home.propTypes = {
-    polls: PropTypes.array.isRequired
+    polls: PropTypes.array.isRequired,
+    toggleLogin: PropTypes.func.isRequired
 };
 
 export default Home;

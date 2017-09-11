@@ -50,7 +50,7 @@ class Header extends React.Component {
 
 Header.propTypes = {
     loggedIn: PropTypes.bool.isRequired,
-    user: PropTypes.object.isRequired
+    user: PropTypes.object
 };
 
 export default Header;
