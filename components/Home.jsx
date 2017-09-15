@@ -17,9 +17,9 @@ class Home extends React.Component {
     }
 
     componentDidMount() {
-        if (sessionStorage.getItem("token")) {
+        if (localStorage.getItem("token")) {
             $.getJSON("http://localhost:8000/api/whoami", {
-                "token": sessionStorage.getItem("token")
+                "token": localStorage.getItem("token")
             }, (user) => {
                 this.props.toggleLogin(user);
             });

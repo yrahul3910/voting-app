@@ -5,10 +5,30 @@ import Chart from "chart.js";
 const $ = require("jquery");
 
 class Poll extends React.Component {
+    /*
+        props:
+            match: An object, with match.params.id giving the ID of the current poll.
+            polls: An array of all polls.
+            username: The username of the current user.
+    */
+
     constructor(props) {
         super(props);
         this.click = this.click.bind(this);
         this.getRandomColor = this.getRandomColor.bind(this);
+        this.deletePoll = this.deletePoll.bind(this);
+    }
+
+    deletePoll() {
+        let pId = this.props.match.params.id;
+
+        $.ajax({
+            url: "http://localhost:8000/poll/" + this.props.polls[pId].url,
+            type: "DELETE",
+            success: () => {
+                window.location = "/";
+            }
+        });
     }
 
     // from https://stackoverflow.com/a/25709983
@@ -56,16 +76,30 @@ class Poll extends React.Component {
         let ops = current.ops.map((o, i) =>
             <button key={i} id={i} onClick={() => {this.click(i);}} className="btn btn-default poll">{o.name}</button>
         );
+
+        let deleteButton = (current.username == this.props.username) ?
+            <button className="btn btn-danger" onClick={this.deletePoll}>Delete this Poll</button> :
+            <div></div>;
+
         return (
             <div className="row">
-                <div className="col-md-4 col-md-offset-4">
-                    <h2>{current.q}</h2>
+                <div className="col-md-3 col-md-offset-3">
+                    <div className="row">
+                        <h2>{current.q}</h2>
+                    </div>
+                    <div className="row">
+                        {ops}
+                    </div>
                 </div>
-                <div className="col-md-4 col-md-offset-4">
-                    {ops}
-                </div>
-                <div className="col-md-4 col-md-offset-4">
-                    <canvas width="100%" height="100%"></canvas>
+                <div className="col-md-3">
+                    <div className="row">
+                        <canvas width="100%" height="100%"></canvas>
+                    </div><br/>
+                    <div className="row">
+                        <div className="col-md-6 col-md-offset-3">
+                            {deleteButton}
+                        </div>
+                    </div>
                 </div>
             </div>
         );
@@ -74,7 +108,8 @@ class Poll extends React.Component {
 
 Poll.propTypes = {
     match: PropTypes.object.isRequired,
-    polls: PropTypes.array.isRequired
+    polls: PropTypes.array.isRequired,
+    username: PropTypes.string
 };
 
 export default Poll;

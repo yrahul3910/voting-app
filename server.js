@@ -197,6 +197,20 @@ app.get("/", (req, res) => {
     res.sendFile("./src/index.html");
 });
 
+app.delete("/polls/:url", (req, res) => {
+    mongo.connect(process.env.MONGO_URL, (err, db) => {
+        let polls = db.collection("polls");
+
+        polls.deleteOne({
+            url: req.params.url
+        }).then(() => {
+            db.close();
+            res.writeHead(200);
+            res.end();
+        });
+    });
+});
+
 app.listen(port, (err) => {
     if (err) throw err;
     open("http://localhost:" + port);

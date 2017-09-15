@@ -25,6 +25,8 @@ class Register extends React.Component {
                     username,
                     polls: []
                 });
+
+                localStorage.setItem("token", data.token);
             }
         });
     }

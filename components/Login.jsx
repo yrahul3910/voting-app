@@ -24,7 +24,7 @@ class Login extends React.Component {
             else {
                 $("#message").html("<span style='color: green'>Success</span>");
 
-                sessionStorage.setItem("token", data.token);
+                localStorage.setItem("token", data.token);
                 this.props.toggleLogin(data.user);
             }
         });

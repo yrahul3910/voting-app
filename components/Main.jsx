@@ -60,7 +60,7 @@ class Main extends React.Component {
                     <Home polls={p} toggleLogin={this.toggleLogin} />
                 } />
                 <Route path="/poll/:id" render={(props) =>
-                    <Poll polls={p} {...props} />
+                    <Poll polls={p} user={this.props.user.username} {...props} />
                 } />
                 <Route exact path="/login" render={() =>
                     <Login toggleLogin={this.toggleLogin} />
